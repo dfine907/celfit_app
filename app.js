@@ -1,28 +1,34 @@
 const express = require('express')
 const app = express()
 const port = 5000
-
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
 
 require('dotenv').config()
 
+//when we hit any request, need to run the bodyParser - use() middleware:
+app.use(bodyParser.json())
+
+//import routes
+const mainRoute = require('./routes/main')
+
+app.use('/main', mainRoute)
+
 const URL = process.env.MONGODB_URI
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion } = require('mongodb')
 
 app.get('/', (req, res) => {
   res.send('The home page.')
 })
-app.get('/main', (req, res) => {
-  res.send('The main page.')
-})
 
 //Connect to database with Mongoose:
-mongoose.connect('mongodb://127.0.0.1:27017/celfit')
-console.log(mongoose.connection.readyState);
+mongoose.connect(URL)
+.then(() => console.log("Pinged your deployment. You successfully connected to MongoDB!"))
+.catch((err) => console.error(err))
 
 
-//MONGODB - successful connection: 
+//MONGODB - successful connection:
 // const client = new MongoClient(URL, {
 //   serverApi: {
 //     version: ServerApiVersion.v1,
