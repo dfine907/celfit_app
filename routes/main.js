@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const Post = require('../models/Post')
+const User = require('../models/User')
 
-
-
+//POSTS
 router.get('/', async (req, res) => {
   try {
     // below is the promise that will be sent back from the database
@@ -70,4 +70,43 @@ router.patch('/:postId', async (req, res) => {
     res.json({ message: error })
   }
 })
+
+//USER
+router.get('/', async (req, res) => {
+  try {
+    // below is the promise that will be sent back from the database
+    const userData = await User.find()
+    res.json(userData)
+  } catch (error) {
+    res.json({ message: error })
+  }
+})
+
+router.post('/', async (req, res) => {
+  const userData = new User({
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    age: req.body.age,
+  })
+  try {
+    // below, returns promise from above
+    const savedData = await userData.save()
+    res.json(savedData)
+  } catch (error) {
+    res.json({ message: error })
+  }
+})
+
+router.get('/:userId', async (req, res) => {
+  // console.log(req.params.postId)
+  // below is the promise
+  try {
+    const userData = await User.findById(req.params.userDataId)
+    res.json(userData)
+  } catch (error) {
+    res.json({ message: error })
+  }
+})
+
 module.exports = router

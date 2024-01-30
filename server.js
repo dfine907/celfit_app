@@ -11,11 +11,10 @@ const mainRoute = require('./routes/main')
 const cors = require('cors')
 
 
-//when we hit any request, need to run the bodyParser - use() middleware:
-//middleware fancy way of saying code that executes between us GETTING a request on 
-//the server and us sending a response.
+//Some middleware--bodyParser isn't needed anymore
 app.use(bodyParser.json())
 app.use(cors())
+
 
 
 //route handler local host root
@@ -37,6 +36,11 @@ const connectToMongoDB = async () => {
 };
 
 connectToMongoDB();
+
+//middleWare test (this does not log?):
+app.use('/', ()=> {
+  console.log("This is middleware");
+})
 
 //LISTEN TO SERVER:
 app.listen(process.env.PORT || port, () => {
