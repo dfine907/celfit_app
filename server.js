@@ -22,8 +22,22 @@ app.get('/', (req, res) => {
   res.send('The home page.')
 })
 
+app.get('/user', (req, res) => {
+  res.send('This is a User Test Page')
+})
+
+app.get('/habit', (req, res) => {
+  res.send('This is a HABIT Test Page')
+})
+
+
 //import routes from route file (main.js)
 app.use('/main', mainRoute)
+
+// app.use('/userdata', userRoute)
+
+// app.use('/habitdata', userRoute)
+
 
 //Connect to database with Mongoose:
 const connectToMongoDB = async () => {
@@ -37,7 +51,7 @@ const connectToMongoDB = async () => {
 
 connectToMongoDB();
 
-//middleWare test (this does not log?):
+//middleWare test:
 app.use('/', ()=> {
   console.log("This is middleware");
 })

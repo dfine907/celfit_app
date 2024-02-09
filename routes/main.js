@@ -1,7 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const Post = require('../models/Post')
+
 const User = require('../models/User')
+const Habit = require('../models/Habit')
 
 //POSTS
 router.get('/', async (req, res) => {
@@ -82,12 +84,11 @@ router.get('/', async (req, res) => {
   }
 })
 
-router.post('/', async (req, res) => {
+router.post('/:userInfo', async (req, res) => {
   const userData = new User({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
+    userName: req.body.name,
     age: req.body.age,
+    password: req.body.password,
   })
   try {
     // below, returns promise from above

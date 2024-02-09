@@ -1,19 +1,6 @@
 const mongoose = require('mongoose')
 
-const UserSchema = mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  age: {
-    type: Number,
-    required: false,
-  },
-
-  password: {
-    type: String,
-    required: false,
-  },
+const HabitSchema = mongoose.Schema({
 
   healthHabits: [
     {
@@ -31,4 +18,4 @@ const UserSchema = mongoose.Schema({
   ]
 })
 
-module.exports = mongoose.model('Users', UserSchema)
+module.exports = mongoose.model('Habits', HabitSchema)
