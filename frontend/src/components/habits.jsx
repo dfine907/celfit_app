@@ -9,6 +9,17 @@ import { useState, useEffect } from 'react'
 //click event attached to state add to each check box
 //event listeners for each
 
+// const initialState = {
+//   celeryJuiceChecked: false,
+//   leafyGreensChecked: false,
+//   chiaSeedsChecked: false,
+//   waterConsumedChecked: false,
+//   exerciseChecked: false
+// }
+
+// const Habits = () => {
+//   const [selection, setSelection] = useState(initialState)
+
 const Habits = () => {
   const [celeryJuiceChecked, setCeleryJuiceChecked] = useState(false)
   const [leafyGreensChecked, setLeafyGreensChecked] = useState(false)
