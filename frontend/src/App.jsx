@@ -1,11 +1,15 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Habits from './components/habits'
 
+import { useState } from 'react'
+
+
 function App() {
-  return <Habits />
+  return ( 
+  <> 
+  <Habits />
+  </>
+  )
 }
 
 export default App
