@@ -48,6 +48,7 @@ const Habits = () => {
     setExerciseChecked(!exerciseChecked)
   }
 
+  // callback function will log an object with keys and boolean values.
   useEffect(() => {
     console.log({
       celeryJuiceChecked,
