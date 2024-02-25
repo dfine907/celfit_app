@@ -21,54 +21,34 @@ import { useState, useEffect } from 'react'
 //   const [selection, setSelection] = useState(initialState)
 
 const Habits = () => {
-  const [celeryJuiceChecked, setCeleryJuiceChecked] = useState(false)
-  const [leafyGreensChecked, setLeafyGreensChecked] = useState(false)
-  const [chiaSeedsChecked, setChiaSeedsChecked] = useState(false)
-  const [waterConsumedChecked, setWaterConsumedChecked] =
-    useState(false)
-  const [exerciseChecked, setExerciseChecked] = useState(false)
+  const [checkedStates, setCheckedStates] = useState({
+    celeryJuiceChecked: false,
+    leafyGreensChecked: false,
+    chiaSeedsChecked: false,
+    waterConsumedChecked: false,
+    exerciseChecked: false,
+  })
 
-  const juiceHandler = () => {
-    setCeleryJuiceChecked(!celeryJuiceChecked)
+  const handleCheckboxChange = (habit) => {
+    setCheckedStates(prevStates => ({
+      ...prevStates,
+      [habit]: !prevStates[habit],
+    }))
   }
 
-  const leafyHandler = () => {
-    setLeafyGreensChecked(!leafyGreensChecked)
-  }
-
-  const chiaHandler = () => {
-    setChiaSeedsChecked(!chiaSeedsChecked)
-  }
-
-  const waterHandler = () => {
-    setWaterConsumedChecked(!waterConsumedChecked)
-  }
-
-  const exerciseHandler = () => {
-    setExerciseChecked(!exerciseChecked)
-  }
-
-  // callback function will log an object with keys and boolean values.
   useEffect(() => {
-    console.log({
-      celeryJuiceChecked,
-      leafyGreensChecked,
-      chiaSeedsChecked,
-      waterConsumedChecked,
-      exerciseChecked,
-    })
-  }, [
-    celeryJuiceChecked,
-    leafyGreensChecked,
-    chiaSeedsChecked,
-    waterConsumedChecked,
-    exerciseChecked,
-  ])
-
-  //how to do this for the rest of the boxes?
-  // look at MUI and state
+    console.log(checkedStates)
+  }, [checkedStates])
 
   let todayDate = new Date().toLocaleDateString()
+
+  const habitLabels = {
+    celeryJuiceChecked: 'Celery Juice',
+    leafyGreensChecked: 'Leafy Greens',
+    chiaSeedsChecked: 'Chia Seeds',
+    waterConsumedChecked: 'Water Consumed',
+    exerciseChecked: '45 minutes exercise',
+  }
 
   return (
     <>
@@ -76,56 +56,19 @@ const Habits = () => {
       <h2 style={{ color: 'green' }}> 🥦 Healthy Habits 🥦 </h2>
 
       <FormGroup className="form-group">
-        <FormControlLabel
-          control={
-            <Checkbox
-              value={celeryJuiceChecked}
-              onChange={juiceHandler}
-              color="success"
-            />
-          }
-          label="Celery Juice"
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              value={leafyGreensChecked}
-              onChange={leafyHandler}
-              color="success"
-            />
-          }
-          label="Leafy Greens"
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              value={chiaSeedsChecked}
-              onChange={chiaHandler}
-              color="success"
-            />
-          }
-          label="Chia Seeds"
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              value={waterConsumedChecked}
-              onChange={waterHandler}
-              color="success"
-            />
-          }
-          label="Water Consumed"
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              value={exerciseChecked}
-              onChange={exerciseHandler}
-              color="success"
-            />
-          }
-          label="45 minutes exercise"
-        />
+        {Object.entries(habitLabels).map(([habit, label]) => (
+          <FormControlLabel
+            key={habit}
+            control={
+              <Checkbox
+                checked={checkedStates[habit]}
+                onChange={() => handleCheckboxChange(habit)}
+                color="success"
+              />
+            }
+            label={label}
+          />
+        ))}
       </FormGroup>
 
       <Button sx={{ mt: 4 }} color="success" variant="contained">
