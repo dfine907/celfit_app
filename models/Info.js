@@ -20,7 +20,7 @@ const InfoSchema = mongoose.Schema({
       date: {
         type: Date,
         default: Date.now,
-        required: true,
+        required: false,
       },
       habit: {
         type: String,
@@ -30,5 +30,7 @@ const InfoSchema = mongoose.Schema({
     },
   ]
 })
+
+//one doc per user per day
 
 module.exports = mongoose.model('Information', InfoSchema)

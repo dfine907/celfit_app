@@ -7,9 +7,10 @@ const HabitSchema = mongoose.Schema({
       date: {
         type: Date,
         default: Date.now,
+        unique: true,
         required: true,
       },
-      habit: {
+      juice: {
         type: String,
         isCompleted: false,
         required: true,
@@ -17,5 +18,7 @@ const HabitSchema = mongoose.Schema({
     },
   ]
 })
+
+//each habit has it's own attribute
 
 module.exports = mongoose.model('Habits', HabitSchema)
