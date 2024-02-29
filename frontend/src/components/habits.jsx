@@ -28,6 +28,9 @@ const Habits = () => {
     useState(false)
   const [exerciseChecked, setExerciseChecked] = useState(false)
 
+  
+  //   two things.  which and what value
+
   const juiceHandler = () => {
     setCeleryJuiceChecked(!celeryJuiceChecked)
   }
@@ -74,6 +77,13 @@ const Habits = () => {
     <>
       <h3 style={{ color: 'green' }}> {todayDate} </h3>
       <h2 style={{ color: 'green' }}> 🥦 Healthy Habits 🥦 </h2>
+
+      {/* need to loop over each to render checkboxes true or false:  
+     Object.keys or Object.entites
+     Stack overflow:
+     Object.keys(options).map((key, i, all_keys) => {
+        let val = options[key];
+          console.log(typeof val) */}
 
       <FormGroup className="form-group">
         <FormControlLabel
