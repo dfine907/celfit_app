@@ -16,7 +16,6 @@ app.use(bodyParser.json())
 app.use(cors())
 
 
-
 //route handler local host root
 app.get('/', (req, res) => {
   res.send('The home page.')
@@ -30,13 +29,9 @@ app.get('/habit', (req, res) => {
   res.send('This is a HABIT Test Page')
 })
 
-
 //import routes from route file (main.js)
 app.use('/main', mainRoute)
 
-// app.use('/userdata', userRoute)
-
-// app.use('/habitdata', userRoute)
 
 
 //Connect to database with Mongoose:
