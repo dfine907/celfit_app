@@ -1,13 +1,13 @@
 import './App.css'
 import Habits from './components/habits'
-
-import { useState } from 'react'
+import Nav from './components/nav'
 
 
 function App() {
   return ( 
   <> 
   <Habits />
+  <Nav />
   </>
   )
 }
