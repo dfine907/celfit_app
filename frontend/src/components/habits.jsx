@@ -1,4 +1,4 @@
-import React from 'react'
+
 import Button from '@mui/material/Button'
 import FormGroup from '@mui/material/FormGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
@@ -14,7 +14,6 @@ const Habits = () => {
   const [waterConsumedChecked, setWaterConsumedChecked] =
     useState(false)
   const [exerciseChecked, setExerciseChecked] = useState(false)
-
 
 
   const juiceHandler = () => {
